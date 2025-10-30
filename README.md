@@ -6,8 +6,7 @@ This project investigates whether the type of milk used in coffee (lactose vs. l
 ---
 
 ## Motivation
-I often consume coffee while studying but have noticed differences in how I feel depending on the milk type. My motivation is to understand how lactose in milk might affect my focus, energy level, and productivity during study sessions.  
-If I discover that lactose negatively influences my efficiency, I will adapt my coffee habits to optimize concentration and study routine. This project will help me make data-driven lifestyle choices to study more effectively.
+I often consume coffee while studying but have noticed differences in how I feel depending on the milk type. My motivation is to understand how lactose in milk might affect my focus, energy level, and productivity during study sessions. In recent years, the distinction between **lactose and lactose-free milk products** has become increasingly common and popular in daily consumption. I also wanted to explore whether this widespread preference truly creates a noticeable difference in study performance or if it is simply a lifestyle trend. If I discover that lactose negatively influences my efficiency, I will adapt my coffee habits to optimize concentration and study routine. This project will help me make data-driven lifestyle choices to study more effectively.
 
 ---
 
@@ -17,22 +16,17 @@ To evaluate the impact of lactose and lactose-free milk coffee on study efficien
 
 1. **Focus Duration (minutes)**  
    - Total continuous study time before the first major distraction or break.
-
 2. **Number of Breaks**  
    - Frequency of breaks taken during a study session.
-
 3. **Library Time (minutes)**  
    - Total duration spent studying in the library or study environment.
-
 4. **Productivity Ratio**  
-   - Ratio of active study time to total library time.  
-
+   - Ratio of focus duration to total library time.  
 5. **Energy Levels**  
    - Self-assessed energy before and after drinking coffee, rated on a 1–3 Likert scale:  
      - 1 = tired  
      - 2 = normal  
      - 3 = energetic  
-
 6. **Coffee Type**  
    - Lactose (coded as `0`) and Lactose-Free (coded as `1`), used to compare performance differences.
 
@@ -96,7 +90,7 @@ After regression, a **Random Forest Regressor** can be used to validate variable
 ---
 
 ## Data Validity and Reliability
-Although some variables (energy, comfort) are self-reported, standardized measurement scales will be used daily to reduce subjectivity.  
+Although the **energy variable** is self-reported, a standardized 1–3 measurement scale will be used daily to reduce subjectivity.  
 By keeping sleep duration, meals, and study schedule constant, external bias will be minimized. Averaging data across 15-day intervals further improves reliability and reduces random noise.
 
 ---
