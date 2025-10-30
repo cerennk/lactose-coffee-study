@@ -1,5 +1,18 @@
 # Effects of Lactose and Lactose-Free Milk Coffee on Study Efficiency
 
+## Table of Contents
+1. [Abstract](#abstract)
+2. [Motivation](#motivation)
+3. [Evaluation Parameters](#evaluation-parameters)
+4. [Data Source & Collection](#data-source--collection)
+5. [Data Analysis Plan](#data-analysis-plan)
+6. [Machine Learning Application](#machine-learning-application)
+7. [Tools & Libraries](#tools--libraries)
+8. [Data Validity and Reliability](#data-validity-and-reliability)
+9. [Limitations and Future Work](#limitations-and-future-work)
+
+---
+
 ## Abstract
 This project investigates whether the type of milk used in coffee (lactose vs. lactose-free) affects study efficiency. Over a 30-day period, I will collect self-observed data while maintaining consistent daily routines, such as sleep duration and meal types. For 15 days, I will drink lactose milk coffee; for the other 15 days, lactose-free milk coffee during studying. Variables such as focus duration, number of breaks, time spent in the library, and overall productivity ratio will be recorded, alongside self-assessed energy levels before and after drinking coffee. The analysis aims to determine whether lactose consumption has a measurable impact on learning performance and energy levels using regression analysis and hypothesis testing.
 
@@ -38,7 +51,7 @@ Each of these parameters will help determine how the type of milk in coffee infl
 The data will be **self-collected** over a **30-day observation period**:
 - **Days 1–15:** Lactose milk coffee  
 - **Days 16–30:** Lactose-free milk coffee  
-- All other factors (sleep duration, meal content) will be kept constant.
+- All other factors (sleep duration, meal type) will be kept constant.
 
 Each day, I will record:
 | Date | CoffeeType | FocusDuration(min) | BreakCount | LibraryTime(min) | ProductivityRatio | EnergyBefore(1–3) | EnergyAfter(1–3) |
