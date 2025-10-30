@@ -59,11 +59,11 @@ Each day, I will record:
 2. **Exploratory Data Analysis (EDA)**
    - Compare means of focus duration and productivity  
    - Visualize distributions using boxplots and scatter plots
-
+     
 3. **Hypothesis Testing**
-   - **H₀:** Lactose does not affect study performance
-   - **H₁:** Lactose affects study performance
-   - Conduct two-sample t-test on mean focus duration and productivity ratio.
+   - **H₀ (Null):** The type of milk used in coffee (lactose vs. lactose-free) has **no meaningful or notable impact** on productivity ratio.  
+   - **H₁ (Alternative):** The type of milk used in coffee **may have some influence** on productivity ratio.  
+   - A two-sample t-test will be conducted to compare the mean productivity ratio between the two conditions.
 
 4. **Regression Analysis**
    - Perform **linear regression** with:
