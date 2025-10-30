@@ -40,7 +40,9 @@ To evaluate the impact of lactose and lactose-free milk coffee on study efficien
      - 1 = tired  
      - 2 = normal  
      - 3 = energetic  
-6. **Coffee Type**  
+6. **Energy Change (EnergyAfter – EnergyBefore)**  
+   - The difference between self-reported energy after and before coffee, showing whether energy increased, decreased, or remained stable.  
+7. **Coffee Type**  
    - Lactose (coded as `0`) and Lactose-Free (coded as `1`), used to compare performance differences.
 
 Each of these parameters will help determine how the type of milk in coffee influences overall study performance and daily efficiency.
@@ -54,45 +56,59 @@ The data will be **self-collected** over a **30-day observation period**:
 - All other factors (sleep duration, meal type) will be kept constant.
 
 Each day, I will record:
-| Date | CoffeeType | FocusDuration(min) | BreakCount | LibraryTime(min) | ProductivityRatio | EnergyBefore(1–3) | EnergyAfter(1–3) |
-|------|-------------|--------------------|-------------|------------------|------------------|------------------|-----------------|
-| 2025-10-29 | Lactose | 90 | 2 | 180 | 0.5 | 1 (tired) | 3 (energetic) |
-| 2025-11-16 | Lactose-Free | 110 | 1 | 200 | 0.55 | 2 (normal) | 3 (energetic) |
+| Date | CoffeeType | FocusDuration(min) | BreakCount | LibraryTime(min) | ProductivityRatio | EnergyBefore(1–3) | EnergyAfter(1–3) | EnergyChange |
+|------|-------------|--------------------|-------------|------------------|------------------|------------------|-----------------|---------------|
+| 2025-10-29 | Lactose | 90 | 2 | 180 | 0.5 | 1 (tired) | 3 (energetic) | +2 |
+| 2025-11-16 | Lactose-Free | 110 | 1 | 200 | 0.55 | 2 (normal) | 3 (energetic) | +1 |
 
 - **Objective variables:** FocusDuration, BreakCount, LibraryTime, ProductivityRatio  
-- **Subjective variables:** EnergyBefore, EnergyAfter (Likert 1–3 scales: 1 = tired, 2 = normal, 3 = energetic)
+- **Subjective variables:** EnergyBefore, EnergyAfter, and **EnergyChange** (difference between EnergyAfter and EnergyBefore, indicating the variation in perceived energy after coffee)
 
 ---
 
 ## Data Analysis Plan
 1. **Data Cleaning & Preparation**
    - Ensure consistent units and missing value checks  
-   - Encode categorical variable (`CoffeeType`: 0 = lactose, 1 = lactose-free)
+   - Encode categorical variable (`CoffeeType`: 0 = lactose, 1 = lactose-free)  
 
 2. **Exploratory Data Analysis (EDA)**
-   - Compare means of focus duration and productivity  
+   - Compare means of focus duration, productivity, and energy change  
    - Visualize distributions using boxplots and scatter plots
-     
-3. **Hypothesis Testing**
-   - **H₀ (Null):** The type of milk used in coffee (lactose vs. lactose-free) has **no meaningful or notable impact** on productivity ratio.  
-   - **H₁ (Alternative):** The type of milk used in coffee **may have some influence** on productivity ratio.  
-   - A two-sample t-test will be conducted to compare the mean productivity ratio between the two conditions.
 
+3. **Hypothesis Testing**
+   - **H₀₁ (Null):** Lactose in milk has **no meaningful or notable effect** on productivity ratio.  
+     **H₁₁ (Alternative):** Lactose in milk **may have some influence** on productivity ratio.  
+      `ProductivityRatio ~ CoffeeType`
+     
+   - **H₀₂ (Null):** There is **no inverse relationship** between EnergyChange and the number of breaks; changes in energy do **not affect** how often breaks are taken.  
+     **H₁₂ (Alternative):** Lower EnergyChange values (decreased energy) **may lead to more breaks** during study sessions.  
+      `BreakCount ~ EnergyChange`  
+      `ProductivityRatio ~ BreakCount`
+
+   - **H₀₃ (Null):** EnergyChange has **no positive relationship** with focus duration.  
+     **H₁₃ (Alternative):** Higher EnergyChange (increased energy) **may be associated** with longer focus duration.  
+      `FocusDuration ~ EnergyChange`
+     
+   - **H₀₄ (Null):** The number of breaks taken during study sessions has **no inverse relationship** with productivity ratio.  
+     **H₁₄ (Alternative):** A higher number of breaks **may be associated** with lower productivity ratio.  
+      `ProductivityRatio ~ BreakCount`
+    
 4. **Regression Analysis**
    - Perform **linear regression** with:
      ```
-     FocusDuration ~ CoffeeType + EnergyBefore + EnergyAfter + BreakCount
+     FocusDuration ~ CoffeeType + EnergyChange + BreakCount
      ```
-   - Evaluate the influence of milk type on study performance while controlling for energy and break count.
+   - Evaluate the influence of milk type and energy variation on study performance while controlling for break count.
 
 5. **Visualization**
-   - Use `matplotlib` and `seaborn` for correlation bar plots, and regression line plots.
+   - Use `matplotlib` and `seaborn` for correlation bar plots, and regression line plots.  
+   - Create scatter plots showing **EnergyChange vs. ProductivityRatio** to visualize the relationship between energy variation and efficiency.
 
 ---
 
 ## Machine Learning Application
 After regression, a **Random Forest Regressor** can be used to validate variable importance:
-- Feature importance will reveal whether `CoffeeType` (lactose vs. lactose-free) has a significant predictive effect on `FocusDuration` or `ProductivityRatio`.
+- Feature importance will reveal whether `CoffeeType` (lactose vs. lactose-free) or `EnergyChange` has a measurable predictive effect on `FocusDuration` or `ProductivityRatio`.
 
 ---
 
@@ -103,7 +119,7 @@ After regression, a **Random Forest Regressor** can be used to validate variable
 ---
 
 ## Data Validity and Reliability
-Although the **energy variable** is self-reported, a standardized 1–3 measurement scale will be used daily to reduce subjectivity.  
+Although the **energy variables** are self-reported, a standardized 1–3 measurement scale will be used daily to reduce subjectivity.  
 By keeping sleep duration, meals, and study schedule constant, external bias will be minimized. Averaging data across 15-day intervals further improves reliability and reduces random noise.
 
 ---
